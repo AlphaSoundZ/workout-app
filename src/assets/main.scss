@@ -2,33 +2,26 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway");
 
 #app {
-  margin: 0 auto;
   font-weight: normal;
-  height: 100vh;
-  width: 100vw;
 
   overflow: hidden;
 
   // center
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-body {
-  // center
   display: absolute;
   justify-content: center;
   align-items: center;
-  text-align: center;
 
-  background: rgb(63, 161, 251);
-  background-image: linear-gradient(
-    142deg,
-    rgba(63, 161, 251, 1) 0%,
-    rgba(252, 70, 168, 1) 100%
-  );
+  // center div in body
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 
+body {
+
+  overflow: hidden;
   
   -webkit-touch-callout:none;
   -webkit-user-select:none;
@@ -96,4 +89,11 @@ h3 {
     top: calc(50% - var(--size) / 2);
     left: calc(50% - var(--size) / 2);
   }
+}
+
+.view {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
