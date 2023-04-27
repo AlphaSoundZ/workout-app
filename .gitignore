@@ -27,6 +27,8 @@ coverage
 *.sln
 *.sw?
 
+Session.vim
+
 # Cordova
 /src-cordova/platforms
 /src-cordova/plugins
