@@ -22,16 +22,19 @@ export default {
   data () {
     return {
       clock: ref(0),
+      clockInterval: null,
     }
   },
   setup () {
     const clock = ref(0)
+    const clockInterval: any = null
     return {
-      clock
+      clock,
+      clockInterval
     }
   },
-  mounted() {
-    var date: Date = this.srvTime();
+  async mounted() {
+    var date: Date = await this.srvTime();
     const router = useRouter()
     
     console.log("date: ", date)
@@ -39,18 +42,14 @@ export default {
     // start time interval
     this.clock = (date.valueOf()/1000) % 45
 
-    const clockInterval = setInterval(() => {
+    this.clockInterval = setInterval(() => {
       this.clock++
 
-      if (this.clock % 45 === 0) {
-        // new minute begins
-        router.push({ path: '1'})
-        clearInterval(clockInterval)
-      }
+      this.checkInterval();
     }, 1000);
   },
   methods: {
-    srvTime() {
+    async srvTime() {
       try {
           //FF, Opera, Safari, Chrome
           const xmlHttp = new XMLHttpRequest();
@@ -62,6 +61,14 @@ export default {
       catch (err1) {
         console.log("AJAX not supported, use CPU time");
         return new Date();
+      }
+    },
+    checkInterval() {
+      if (this.clock >= 45) {
+        clearInterval(this.clockInterval)
+
+        // go to break page
+        this.$router.push('1')
       }
     }
   },

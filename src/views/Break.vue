@@ -2,7 +2,7 @@
     <h1 class="break">Break</h1>
     <div class="timer-container">
         <button class="button" >
-            {{ timer + ' ' + unit}}
+            {{ breakTimer + ' ' + unit}}
         <svg width="79" height="46" viewBox="0 0 79 46" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g filter="url(#filter0_f_618_1123)">
             <path d="M42.9 2H76.5L34.5 44H2L42.9 2Z" fill="url(#paint0_linear_618_1123)"/>
@@ -30,29 +30,36 @@ import { useRouter } from 'vue-router'
 export default {
     data () {
         return {
-            timer: ref(0),
+            breakTimer: ref(15),
+            breakTimerInterval: null,
             unit: 'Seconds'
         }
     },
     setup() {
-        const timer = ref(15)
+        const breakTimer = ref(15)
         const router = useRouter()
-        const timerInterval = setInterval(() => {
-            timer.value--
-    
-            if (timer.value === 0) {
-                clearInterval(timerInterval)
-    
-                // go to next exercice
-                router.push({ path: '1' })
-            }
-        }, 1000)
+        const breakTimerInterval: any = null
 
         return {
-            timer
+            breakTimer,
+            breakTimerInterval
         }
     },
     mounted() {
+        this.breakTimerInterval = setInterval(() => {
+            this.breakTimer--
+    
+            this.check()
+        }, 1000)
+    },
+    methods: {
+        check() {
+            if (this.breakTimer === 0) {
+                clearInterval(this.breakTimerInterval)
+                // go to break page
+                this.$router.push('1')
+            }
+        }
     }
 }
 </script>

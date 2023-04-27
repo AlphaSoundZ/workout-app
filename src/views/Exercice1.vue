@@ -41,27 +41,26 @@ import '@google/model-viewer'
 export default {
     data () {
         return {
-            timer: ref(0),
-            unit: 'Seconds'
+            timer: ref(30),
+            unit: 'Seconds',
+            timerInterval: null
         }
     },
     setup() {
         const timer = ref(30)
         const router = useRouter()
-        const timerInterval = setInterval(() => {
-            timer.value--
-
-            if (timer.value === 0) {
-                clearInterval(timerInterval)
-
-                // go to break page
-                router.push({ path: 'break'})
-            }
-        }, 1000)
+        const timerInterval: any = null
 
         return {
-            timer
+            timer,
+            timerInterval
         }
+    },
+    mounted() {
+        this.timerInterval = setInterval(() => {
+            this.timer--
+            this.check()
+        }, 1000);
     },
     methods: {
         srvTime() {
@@ -76,6 +75,12 @@ export default {
             catch (err1) {
                 console.log("AJAX not supported, use CPU time");
                 return new Date();
+            }
+        },
+        check() {
+            if (this.timer === 0) {
+                clearInterval(this.timerInterval)
+                this.$router.push('break')
             }
         }
   },
