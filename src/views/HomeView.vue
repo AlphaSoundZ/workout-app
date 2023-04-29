@@ -1,15 +1,31 @@
 <template class="view">
-  <div class="container">
-    <div class="title-container">
-      <h1>core-workout</h1>
-      <h3 class="subtitle">von Emil, Maxim und Jan Jacob</h3>
-      <h3 class="subtitle">Time: {{ clock }} </h3>
-    </div>
-    <div class="link-container">
-      <RouterLink to="/1">
-          <button class='glowing-btn'><span class='glowing-txt'>S<span class='faulty-letter'>T</span>ART</span></button>
-      </RouterLink>
-    </div>
+  <div class="container" id="exercice" style="opacity: 0;">
+    <Exercice1Component/>
+  </div>
+  <div class="container" id="break" style="opacity: 0;">
+    <BreakCompoent/>
+  </div>
+
+  <div class="timer-container">
+    <button class="button" >
+      {{ timer + ' Seconds'}}
+    <svg width="79" height="46" viewBox="0 0 79 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g filter="url(#filter0_f_618_1123)">
+        <path d="M42.9 2H76.5L34.5 44H2L42.9 2Z" fill="url(#paint0_linear_618_1123)"/>
+    </g>
+    <defs>
+      <filter id="filter0_f_618_1123" x="0" y="0" width="78.5" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_618_1123"/>
+      </filter>
+      <linearGradient id="paint0_linear_618_1123" x1="76.5" y1="2.00002" x2="34.5" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.05"/>
+      </linearGradient>
+    </defs>
+    </svg>
+    </button>
   </div>
 </template>
 
@@ -18,14 +34,22 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+// compoments
+import BreakCompoent from '@/components/BreakComponent.vue'
+import Exercice1Component from '@/components/Exercice1Component.vue'
+
 export default {
   data () {
     return {
       clock: ref(0),
+      timer: ref(0),
+      roundLength: 45,
       clockInterval: null,
+      state: null
     }
   },
   setup () {
+    console.log(import.meta.env.BASE_URL)
     const clock = ref(0)
     const clockInterval: any = null
     return {
@@ -34,44 +58,69 @@ export default {
     }
   },
   async mounted() {
-    var date: Date = await this.srvTime();
-    const router = useRouter()
+    var date: number = await this.syncTimeDiff();
     
     console.log("date: ", date)
+
+    const breakState = document.getElementById('break') as HTMLElement
+    const exerciceState = document.getElementById('exercice') as HTMLElement
     
     // start time interval
-    this.clock = (date.valueOf()/1000) % 45
+    this.clock = Math.ceil(((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)
+
+    await new Promise(resolve => setTimeout(resolve, (this.clock - (((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)) * 1000));
 
     this.clockInterval = setInterval(() => {
-      this.clock++
+      this.clock += 1
 
-      this.checkInterval();
+      // check if exercice or break
+      this.timer = parseInt((this.clock).toFixed(0)) * -1 + this.roundLength + 1
+
+      if (this.timer > 15) {
+        // exercice
+        this.timer -= 15
+
+        breakState.style.opacity = '0'
+        exerciceState.style.opacity = '1'
+      } else {
+        // break
+        breakState.style.opacity = '1'
+        exerciceState.style.opacity = '0'
+      }
+
+      if (this.clock === this.roundLength) {
+        this.clock = 0
+      }
     }, 1000);
   },
   methods: {
-    async srvTime() {
+    async syncTimeDiff() {
+
       try {
-          //FF, Opera, Safari, Chrome
+          const startDate = new Date();
           const xmlHttp = new XMLHttpRequest();
           xmlHttp.open('HEAD',window.location.href.toString(),false);
           xmlHttp.setRequestHeader("Content-Type", "text/html");
           xmlHttp.send('');
-          return new Date(xmlHttp.getResponseHeader("Date") as string);
+          const result = xmlHttp.getResponseHeader("Date") as string;
+          const endDate = new Date();
+          const diff = endDate.valueOf() - startDate.valueOf();
+          const date = new Date(result).valueOf() + diff/2; // add the difference to get the correct time
+
+          console.log("diff:",diff)
+          
+          return (date.valueOf() - endDate.valueOf());
       }
       catch (err1) {
         console.log("AJAX not supported, use CPU time");
-        return new Date();
+        return 0;
       }
     },
-    checkInterval() {
-      if (this.clock >= 45) {
-        clearInterval(this.clockInterval)
-
-        // go to break page
-        this.$router.push('1')
-      }
-    }
   },
+  components: {
+    BreakCompoent,
+    Exercice1Component
+  }
 }
 </script>
 
@@ -112,6 +161,15 @@ h3 {
 .title-container {
   top: 15%;
 }
+
+.timer-container {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+
+    z-index: 3;
+} 
 
 </style>
 <style src="@/assets/glowingBtn.scss"></style>

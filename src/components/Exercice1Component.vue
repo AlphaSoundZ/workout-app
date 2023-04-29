@@ -8,28 +8,7 @@
     ></model-viewer>
     <div class="infobox-container">
         <h1 class="title">Bizep Curl</h1>
-        <p>- Test</p>
-    </div>
-    <div class="timer-container">
-        <button class="button" >
-            {{ timer + ' ' + unit}}
-        <svg width="79" height="46" viewBox="0 0 79 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g filter="url(#filter0_f_618_1123)">
-            <path d="M42.9 2H76.5L34.5 44H2L42.9 2Z" fill="url(#paint0_linear_618_1123)"/>
-        </g>
-        <defs>
-            <filter id="filter0_f_618_1123" x="0" y="0" width="78.5" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-            <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-            <feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_618_1123"/>
-            </filter>
-            <linearGradient id="paint0_linear_618_1123" x1="76.5" y1="2.00002" x2="34.5" y2="44" gradientUnits="userSpaceOnUse">
-            <stop stop-color="white" stop-opacity="0.6"/>
-            <stop offset="1" stop-color="white" stop-opacity="0.05"/>
-            </linearGradient>
-        </defs>
-        </svg>
-        </button>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa necessitatibus accusamus perferendis consectetur in consequatur adipisci beatae at provident asperiores nostrum aliquid illo ipsa, voluptates architecto, voluptatem quidem. Quo, magni.</p>
     </div>
 </template>
 
@@ -41,48 +20,13 @@ import '@google/model-viewer'
 export default {
     data () {
         return {
-            timer: ref(30),
-            unit: 'Seconds',
-            timerInterval: null
         }
     },
     setup() {
-        const timer = ref(30)
-        const router = useRouter()
-        const timerInterval: any = null
-
-        return {
-            timer,
-            timerInterval
-        }
     },
     mounted() {
-        this.timerInterval = setInterval(() => {
-            this.timer--
-            this.check()
-        }, 1000);
     },
     methods: {
-        srvTime() {
-            try {
-                //FF, Opera, Safari, Chrome
-                const xmlHttp = new XMLHttpRequest();
-                xmlHttp.open('HEAD',window.location.href.toString(),false);
-                xmlHttp.setRequestHeader("Content-Type", "text/html");
-                xmlHttp.send('');
-                return new Date(xmlHttp.getResponseHeader("Date") as string);
-            }
-            catch (err1) {
-                console.log("AJAX not supported, use CPU time");
-                return new Date();
-            }
-        },
-        check() {
-            if (this.timer === 0) {
-                clearInterval(this.timerInterval)
-                this.$router.push('break')
-            }
-        }
   },
 }
 </script>
@@ -110,15 +54,6 @@ model-viewer {
     font-family: 'Roboto', sans-serif;
     white-space: nowrap;
     line-height: 1.5;
-}
-
-.timer-container {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-
-    z-index: 3;
 }
 
 .infobox-container {
