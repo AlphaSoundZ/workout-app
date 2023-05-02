@@ -1,4 +1,4 @@
-import{B as p,E as f}from"./Exercice1Component-7dabffb2.js";import{r as a,_ as h,a as c,o as _,c as m,b as i,d as r,e as g,t as v,F as k,f as y}from"./index-fa5d1409.js";const w={data(){return{title:"Plank",description:`Muskelgruppen: 
+import{B as p,E as f}from"./Exercice1Component-8a18bfe0.js";import{r as a,_ as h,a as c,o as _,c as m,b as i,d as r,e as g,t as v,F as k,f as y}from"./index-200dfb9c.js";const w={data(){return{title:"Plank",description:`Muskelgruppen: 
  Rumpfmuskulatur, gerade und seitliche Bauchmuskulatur 
  
  Zu beachten: 

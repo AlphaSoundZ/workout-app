@@ -1,4 +1,4 @@
-import{B as p,E as f}from"./Exercice1Component-7dabffb2.js";import{r as a,_ as h,a as l,o as _,c as m,b as i,d as r,e as g,t as k,F as v,f as y}from"./index-fa5d1409.js";const w={data(){return{title:"Hyperextension",description:`Muskelgruppe: 
+import{B as p,E as f}from"./Exercice1Component-8a18bfe0.js";import{r as a,_ as h,a as l,o as _,c as m,b as i,d as r,e as g,t as k,F as v,f as y}from"./index-200dfb9c.js";const w={data(){return{title:"Hyperextension",description:`Muskelgruppe: 
  Untere Rückenmuskulatur (Rückenstrecker) 
  
  Zu beachten: 
