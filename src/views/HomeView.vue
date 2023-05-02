@@ -11,131 +11,35 @@ export default {
   data () {
     return {
       // change this to edit the exercice
-      title: 'Push Up',
-      description: 'Push Up',
-      modelFile: 'push-up.glb',
-
-
-      clock: ref(0),
-      timer: ref(0),
-      roundLength: 45,
-      clockInterval: null,
-      state: null
     }
-  },
-  setup () {
-    console.log(import.meta.env.BASE_URL)
-    const clock = ref(0)
-    const clockInterval: any = null
-    return {
-      clock,
-      clockInterval
-    }
-  },
-  async mounted() {
-    var date: number = await this.syncTimeDiff();
-    
-    console.log("date: ", date)
-
-    const breakState = document.getElementById('break') as HTMLElement
-    const exerciceState = document.getElementById('exercice') as HTMLElement
-    
-    // start time interval
-    this.clock = Math.ceil(((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)
-
-    await new Promise(resolve => setTimeout(resolve, (this.clock - (((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)) * 1000));
-
-    this.clockInterval = setInterval(() => {
-      this.clock = Math.ceil(((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)
-
-      // check if exercice or break
-      this.timer = parseInt((this.clock).toFixed(0)) * -1 + this.roundLength + 1
-
-      if (this.timer > 15) {
-        // exercice
-        this.timer -= 15
-
-        breakState.style.opacity = '0'
-        exerciceState.style.opacity = '1'
-      } else {
-        // break
-        breakState.style.opacity = '1'
-        exerciceState.style.opacity = '0'
-      }
-
-      if (this.clock >= this.roundLength) {
-        this.clock = 0
-        console.log("round finished", ((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)
-      }
-    }, 100);
-  },
-  methods: {
-    async syncTimeDiff() {
-
-      try {
-          const startDate = new Date();
-          const xmlHttp = new XMLHttpRequest();
-          xmlHttp.open('HEAD',window.location.href.toString(),false);
-          xmlHttp.setRequestHeader("Content-Type", "text/html");
-          xmlHttp.send('');
-          const result = xmlHttp.getResponseHeader("Date") as string;
-          const endDate = new Date();
-          const diff = endDate.valueOf() - startDate.valueOf();
-          const date = new Date(result).valueOf() + diff/2; // add the difference to get the correct time
-
-          console.log("diff:",diff)
-          
-          return (date.valueOf() - endDate.valueOf());
-      }
-      catch (err1) {
-        console.log("AJAX not supported, use CPU time");
-        return 0;
-      }
-    },
-  },
-  components: {
-    BreakCompoent,
-    Exercice1Component
-  }
-}
+  }}
 </script>
 
-<template class="view">
-  <h3 class="credits">von Emil, Maxim & Jan Jacob</h3>
-  <div class="container" id="exercice" style="opacity: 0;">
-    <Exercice1Component 
-      :modelFile=modelFile 
-      :title=title
-      :description=description />
-  </div>
-  <div class="container" id="break" style="opacity: 0;">
-    <BreakCompoent/>
-  </div>
-
-  <div class="timer-container">
-    <button class="button" >
-      {{ timer + ' Seconds'}}
-    <svg width="79" height="46" viewBox="0 0 79 46" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <g filter="url(#filter0_f_618_1123)">
-        <path d="M42.9 2H76.5L34.5 44H2L42.9 2Z" fill="url(#paint0_linear_618_1123)"/>
-    </g>
-    <defs>
-      <filter id="filter0_f_618_1123" x="0" y="0" width="78.5" height="46" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
-      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
-      <feGaussianBlur stdDeviation="1" result="effect1_foregroundBlur_618_1123"/>
-      </filter>
-      <linearGradient id="paint0_linear_618_1123" x1="76.5" y1="2.00002" x2="34.5" y2="44" gradientUnits="userSpaceOnUse">
-      <stop stop-color="white" stop-opacity="0.6"/>
-      <stop offset="1" stop-color="white" stop-opacity="0.05"/>
-      </linearGradient>
-    </defs>
-    </svg>
-    </button>
-  </div>
+<template>
+  <div class="mano">
+    <router-link to="/1_1"><button>1_1</button></router-link>
+    <router-link to="/1_2"><button>1_2</button></router-link>
+    <router-link to="/1_3"><button>1_3</button></router-link>
+    <router-link to="/1_4"><button>1_4</button></router-link>
+    <router-link to="/1_5"><button>1_5</button></router-link>
+    <router-link to="/1_6"><button>1_6</button></router-link>
+    <router-link to="/1_7"><button>1_7</button></router-link>
+    <br>
+    <router-link to="/2_1"><button>2_1</button></router-link>
+    <router-link to="/2_2"><button>2_2</button></router-link>
+    <router-link to="/2_3"><button>2_3</button></router-link>
+    <router-link to="/2_4"><button>2_4</button></router-link>
+    <router-link to="/2_5"><button>2_5</button></router-link>
+    <router-link to="/2_6"><button>2_6</button></router-link>
+    <router-link to="/2_7"><button>2_7</button></router-link>
+</div>
 </template>
 
 <style lang="scss">
+
+.mano {
+  z-index: 100;
+}
 
 .credits {
   position: absolute;

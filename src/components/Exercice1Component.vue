@@ -6,8 +6,8 @@
         shadow-intensity="1"
         disable-zoom
         disable-pan
-        camera-orbit="90deg 0 4m"
-        camera-target="0m 0.3m 0m"
+        camera-orbit="90deg 0 8m"
+        camera-target="0m 0.5m 0m"
     ></model-viewer>
     <div class="infobox-container">
         <h1 class="title">{{ title }}</h1>
@@ -56,7 +56,7 @@ model-viewer {
 
 .title {
     // dynamic font size using window size
-    font-size: 16vw;
+    font-size: 8vw;
 
     z-index: 1;
     font-family: 'Roboto', sans-serif;
@@ -80,6 +80,7 @@ model-viewer {
     font-size: 2.5vw;
     font-family: 'Roboto', sans-serif;
     width: 80%;
+    white-space: pre-line
 }
 
 
@@ -108,7 +109,7 @@ model-viewer {
     }
 
     .title {
-        font-size: 8vw;
+        font-size: 4vw;
     }
 
     .infobox-container p {
@@ -127,7 +128,7 @@ model-viewer {
     }
 
     .title {
-        font-size: 16vw;
+        font-size: 8vw;
     }
 
     .infobox-container p {
