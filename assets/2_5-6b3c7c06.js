@@ -1,4 +1,4 @@
-import{B as p,E as f}from"./Exercice1Component-8a18bfe0.js";import{r as a,_ as h,a as r,o as _,c as m,b as i,d as c,e as g,t as v,F as y,f as k}from"./index-200dfb9c.js";const w={data(){return{title:"Leg Raises (liegend)",description:`Muskelgruppe: 
+import{B as p,E as f}from"./Exercice1Component-792c74f3.js";import{r as a,_ as h,a as r,o as _,c as m,b as i,d as c,e as g,t as v,F as y,f as k}from"./index-ac67c7e1.js";const w={data(){return{title:"Leg Raises (liegend)",description:`Muskelgruppe: 
  Unterer Teil der geraden Bauchmuskelatur 
  
  Zu beachten: 
