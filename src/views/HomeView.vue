@@ -71,7 +71,7 @@ export default {
     await new Promise(resolve => setTimeout(resolve, (this.clock - (((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)) * 1000));
 
     this.clockInterval = setInterval(() => {
-      this.clock += 1
+      this.clock = Math.ceil(((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)
 
       // check if exercice or break
       this.timer = parseInt((this.clock).toFixed(0)) * -1 + this.roundLength + 1
@@ -88,10 +88,11 @@ export default {
         exerciceState.style.opacity = '0'
       }
 
-      if (this.clock === this.roundLength) {
+      if (this.clock >= this.roundLength) {
         this.clock = 0
+        console.log("round finished", ((new Date().valueOf() + date.valueOf())/1000) % this.roundLength)
       }
-    }, 1000);
+    }, 100);
   },
   methods: {
     async syncTimeDiff() {

@@ -1,10 +1,13 @@
 <template>
-    <model-viewer src="/3dModels/bizep_curls.glb"
+    <model-viewer src="/3dModels/push-up.glb"
         camera-controls 
         touch-action="pan-y" 
         autoplay="true" 
         shadow-intensity="1"
-        camera-orbit="0deg 75deg"
+        disable-zoom
+        disable-pan
+        camera-orbit="90deg 0 4m"
+        camera-target="0m 0.3m 0m"
     ></model-viewer>
     <div class="infobox-container">
         <h1 class="title">Bizep Curl</h1>
