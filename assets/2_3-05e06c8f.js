@@ -1,4 +1,4 @@
-import{B as p,E as f}from"./Exercice1Component-792c74f3.js";import{r as a,_ as h,a as c,o as m,c as _,b as i,d as r,e as g,t as v,F as y,f as k}from"./index-ac67c7e1.js";const w={data(){return{title:"Seitlicher Armstütz mit Leg Lift",description:`Bei der Hälfte die Seite wechseln! 
+import{B as p,E as f}from"./Exercice1Component-0db117a5.js";import{r as a,_ as h,a as c,o as m,c as _,b as i,d as r,e as g,t as v,F as y,f as k}from"./index-f985363e.js";const w={data(){return{title:"Seitlicher Armstütz mit Leg Lift",description:`Bei der Hälfte die Seite wechseln! 
  
  Muskelgruppe: 
  Seitliche Bauchmuskelatur, Rumpfmuskelatur 

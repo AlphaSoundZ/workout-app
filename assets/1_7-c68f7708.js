@@ -1,4 +1,4 @@
-import{B as p,E as f}from"./Exercice1Component-792c74f3.js";import{r as l,_ as h,a as r,o as m,c as _,b as i,d as c,e as g,t as v,F as k,f as y}from"./index-ac67c7e1.js";const w={data(){return{title:"Plank mit Gewichten",description:`Muskelgruppe: 
+import{B as p,E as f}from"./Exercice1Component-0db117a5.js";import{r as l,_ as h,a as r,o as m,c as _,b as i,d as c,e as g,t as v,F as k,f as y}from"./index-f985363e.js";const w={data(){return{title:"Plank mit Gewichten",description:`Muskelgruppe: 
  Rumpfmuskulatur, vordere und hintere Schultermuskulatur 
  
  Zu beachten: 
