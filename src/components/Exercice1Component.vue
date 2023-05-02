@@ -1,5 +1,5 @@
 <template>
-    <model-viewer src="/3dModels/push-up.glb"
+    <model-viewer :src="getModelPath()"
         camera-controls 
         touch-action="pan-y" 
         autoplay="true" 
@@ -10,8 +10,8 @@
         camera-target="0m 0.3m 0m"
     ></model-viewer>
     <div class="infobox-container">
-        <h1 class="title">Bizep Curl</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa necessitatibus accusamus perferendis consectetur in consequatur adipisci beatae at provident asperiores nostrum aliquid illo ipsa, voluptates architecto, voluptatem quidem. Quo, magni.</p>
+        <h1 class="title">{{ title }}</h1>
+        <p>{{ description }}</p>
     </div>
 </template>
 
@@ -25,11 +25,16 @@ export default {
         return {
         }
     },
+    props: ['modelFile', 'title', 'description'],
     setup() {
     },
     mounted() {
     },
     methods: {
+        getModelPath() {
+            // This path must be correct for your file
+            return `/3dModels/${this.$props.modelFile}`
+        }
   },
 }
 </script>
