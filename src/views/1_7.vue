@@ -13,7 +13,7 @@ export default {
       // change this to edit the exercice
       title: 'Plank mit Gewichten',
       description: 'Muskelgruppe: \n Rumpfmuskulatur, vordere und hintere Schultermuskulatur \n \n Zu beachten: \n Körpermittelpunkt nicht verändern \n \n Variationen: \n Mit Liegestützen kombinieren \n \n Wiederholungsanzahl: \n 15-20',
-      modelFile: 'push-up.glb',
+      modelFile: 'push-up-dumbbell.glb',
 
 
       clock: ref(0),
